@@ -71,7 +71,13 @@ h2{font-size:clamp(1.4rem,3.2vw,2rem); margin:0 0 1rem}
 .step{position:relative; padding-left:2.2rem; margin:1rem 0}
 .step::marker{content:""}
 .dot{position:absolute; left:0; top:0.2rem; width:18px; height:18px; border-radius:999px; background:linear-gradient(var(--brand),var(--brand-2)); box-shadow:0 0 0 4px rgba(14,165,164,.15)}
-
+/* Einheitlicher Seitenabstand für Unterseiten */
+#massnahmen,
+#sanktionsverfahren {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 /* Tabelle */
 table{width:100%; border-collapse:collapse; font-size:.95rem}
 th, td{border-bottom:1px solid rgba(0,0,0,.08); padding:.6rem .4rem; text-align:left}
@@ -145,4 +151,135 @@ body{
   background-attachment: fixed;
   background-size: auto, auto, cover;
 }
+/* ------------------------------
+   Interaktives Sanktionsverfahren (dezente Farben)
+   ------------------------------ */
+#sanktionsverfahren {
+  padding: 2rem 1rem;
+  max-width: var(--maxw);
+  margin: auto;
+}
+
+#sanktionsverfahren .intro {
+  text-align: center;
+  color: var(--muted);
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.stufen {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Grundlayout */
+.stufe {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--card);
+}
+
+.stufe summary {
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 1rem 1.2rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.stufe p {
+  padding: 1rem 1.2rem;
+  margin: 0;
+  background: #fff;
+  color: var(--text);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Hover / Öffnen */
+.stufe:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+.stufe[open] {
+  background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(250,250,250,0.95));
+}
+
+/* Dezente Farbakzente je Stufe */
+.stufe1 summary {
+  background: linear-gradient(135deg, rgba(21,94,117,0.12), rgba(14,165,164,0.10));
+  border-left: 4px solid var(--brand);
+}
+
+.stufe2 summary {
+  background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(254,240,138,0.10));
+  border-left: 4px solid var(--accent);
+}
+
+.stufe3 summary {
+  background: linear-gradient(135deg, rgba(185,28,28,0.12), rgba(239,68,68,0.10));
+  border-left: 4px solid var(--danger);
+}
+
+.stufe4 summary {
+  background: linear-gradient(135deg, rgba(14,165,164,0.12), rgba(125,211,252,0.10));
+  border-left: 4px solid var(--brand-2);
+}
+
+/* Entfernt Standard-Pfeil */
+.stufe summary::marker {
+  display: none;
+}
+
+/* Dunkles Farbschema */
+@media (prefers-color-scheme: dark) {
+  .stufe summary {
+    color: var(--text);
+    background: rgba(255,255,255,0.04);
+    border-left-color: var(--brand-2);
+  }
+  .stufe p {
+    background: var(--card);
+    color: var(--text);
+  }
+}
+/* Impressum & Datenschutz */
+#impressum, #datenschutz {
+  max-width: var(--maxw);
+  margin: 0 auto 3rem;
+  padding: 2rem 1rem;
+  background: var(--card);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+#impressum h2, #datenschutz h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.impressum-box p, .datenschutz-box p {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+#impressum a, #datenschutz a {
+  color: var(--brand-2);
+  text-decoration: none;
+}
+#impressum a:hover, #datenschutz a:hover {
+  text-decoration: underline;
+}
+/* Footer global einrücken, auch ohne .wrap */
+footer > * {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 
